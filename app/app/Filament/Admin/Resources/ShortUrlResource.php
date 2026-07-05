@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\ShortUrlResource\Pages;
 use App\Filament\Admin\Resources\ShortUrlResource\RelationManagers;
+use App\Filament\Resources\ShortUrlResource\RelationManagers\ClicksRelationManager;
 use App\Models\ShortUrl;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -45,6 +46,9 @@ class ShortUrlResource extends Resource
 
                 TextColumn::make('created_at')
                     ->dateTime(),
+                TextColumn::make('clicks_count')
+                    ->label('Clicks')
+                    ->counts('clicks'),
             ])
             ->filters([])
             ->actions([
@@ -58,7 +62,7 @@ class ShortUrlResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ClicksRelationManager::class,
         ];
     }
 
