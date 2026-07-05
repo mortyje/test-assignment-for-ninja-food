@@ -4,8 +4,8 @@ ARG UID=1000
 ARG GID=1000
 
 RUN apt-get update && apt-get install -y \
-    git unzip zip curl libzip-dev libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    git unzip zip curl libzip-dev libpq-dev libicu-dev \
+    && docker-php-ext-install pdo pdo_pgsql zip intl
 
 RUN groupadd -g ${GID} appgroup && \
     useradd -u ${UID} -g appgroup -m appuser
