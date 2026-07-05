@@ -28,10 +28,6 @@ class ShortUrlResource extends Resource
                 ->required()
                 ->url()
                 ->maxLength(2048),
-
-            TextInput::make('short_code')
-                ->required()
-                ->maxLength(10),
         ]);
     }
 
