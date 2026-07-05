@@ -3,7 +3,6 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\ShortUrlResource\Pages;
-use App\Filament\Admin\Resources\ShortUrlResource\RelationManagers;
 use App\Filament\Resources\ShortUrlResource\RelationManagers\ClicksRelationManager;
 use App\Models\ShortUrl;
 use Filament\Forms;
@@ -73,5 +72,11 @@ class ShortUrlResource extends Resource
             'create' => Pages\CreateShortUrl::route('/create'),
             'edit' => Pages\EditShortUrl::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('user_id', auth()->id());
     }
 }
