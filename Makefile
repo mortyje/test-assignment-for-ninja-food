@@ -16,7 +16,9 @@ init-env:
 
 setup:
 	docker compose run --rm php-cli php artisan key:generate
-	docker compose run --rm php-cli php artisan migrate
+	docker compose run --rm php-cli php artisan migrate --force
+	docker compose exec node npm install
+	docker compose exec node npm run build
 
 migrate:
 	docker compose run --rm php-cli php artisan migrate
@@ -44,3 +46,12 @@ cache-clear:
 
 cache-optimize:
 	docker compose run --rm php-cli php artisan optimize
+
+npm-install:
+	docker compose exec node npm install
+
+npm-dev:
+	docker compose exec node npm run dev
+
+npm-build:
+	docker compose exec node npm run build
