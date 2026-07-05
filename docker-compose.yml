@@ -59,7 +59,6 @@ services:
     volumes:
       - ./app:/var/www/html
     tty: true
-    command: sh -c "npm install && npm run dev"
 
 volumes:
   pgdata:
