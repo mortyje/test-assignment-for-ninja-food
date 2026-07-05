@@ -53,5 +53,13 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  node:
+    build: ./docker/node
+    working_dir: /var/www/html
+    volumes:
+      - ./app:/var/www/html
+    tty: true
+    command: sh -c "npm install && npm run dev"
+
 volumes:
   pgdata:
